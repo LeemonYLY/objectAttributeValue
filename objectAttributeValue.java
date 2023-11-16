@@ -1,5 +1,11 @@
 package objectAttributeValue;
 
+/*
+ * Item attribute value exporter. 
+ * As a module in a game, the program calculates the value of an object 
+ * according to its properties using different calculation methods, 
+ * and randomly outputs the value.
+ */
 public class objectAttributeValue {
 	public static void main(String[] args) {
 		double a11 = Double.parseDouble(args[0]);
@@ -14,7 +20,7 @@ public class objectAttributeValue {
 
 		double probability = 0.4;
 
-		double random = Math.random(); // 生成一个0到1之间的随机数
+		double random = Math.random(); // Generate a random number between 0 and 1
 
 		double a[][] = { { a11, a12, a13 }, { a21, a22, a23 }, { a31, a32, a33 } };
 		if (random < probability) {
@@ -28,8 +34,8 @@ public class objectAttributeValue {
 		}
 	}
 
-	// 行列式倒数乘以100000
-	public static double determine(double[][] a) {
+	// The reciprocal of the determinant is multiplied by 100,000
+	public static double determine_modified(double[][] a) {
 		double item1 = a[0][0] * a[1][1] * a[2][2];
 		double item2 = a[0][1] * a[1][2] * a[2][0];
 		double item3 = a[0][2] * a[1][0] * a[2][1];
@@ -42,7 +48,8 @@ public class objectAttributeValue {
 		return result % 100000;
 	}
 
-	// 主对角之和、副对角元素之和相乘、其余元素相加，最后相除
+	// The sum of the main diagonal and the sum of the secondary diagonal elements
+	// are multiplied, the rest of the elements are added, and finally divided
 	public static double matrixOP(double[][] a) {
 		return (a[0][0] + a[1][1] + a[2][2]) * (a[1][1] + a[0][2] + a[2][0]) / (a[0][1] + a[1][0] + a[1][2] + a[2][1])
 				% 100000;
